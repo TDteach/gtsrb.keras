@@ -54,7 +54,7 @@ try:
     with  h5py.File(train_data_file) as hf:
         X, Y = hf['imgs'][:], hf['labels'][:]
         X = np.array(X, dtype='float32')
-        Y = np.eye(NUM_CLASSES, dtype='uint8')[labels]
+        Y = np.eye(NUM_CLASSES, dtype='uint8')[Y-1]
     print("Loaded images from X.h5")
 
 except (IOError,OSError, KeyError):
