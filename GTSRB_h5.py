@@ -36,7 +36,8 @@ def get_class(img_path):
     return int(img_path.split('/')[-2])
 
 if __name__ == '__main__':
-    root_dir = 'GTSRB/Final_Training/Images/'
+    data_dir = '/home/tdteach/data/'
+    root_dir = os.path.join(data_dir,'GTSRB/train/Images/')
     imgs = []
     labels = []
 
@@ -62,16 +63,17 @@ if __name__ == '__main__':
         hf.create_dataset('labels', data=Y+1)
 
 
-    test = pd.read_csv('GT-final_test.csv',sep=';')
+    test_csv_file = os.path.join(data_dir,'GTSRB/test/GT-final_test.csv')
+    test = pd.read_csv(test_csv_file,sep=';')
 
     X_test = []
     y_test = []
     i = 0
     for file_name, class_id  in zip(list(test['Filename']), list(test['ClassId'])):
-        img_path = os.path.join('GTSRB/Final_Test/Images/',file_name)
+        img_path = os.path.join(data_dir, 'GTSRB/Final_Test/Images/',file_name)
         X_test.append(preprocess_img(io.imread(img_path)))
         y_test.append(class_id+1)
-        
+
     X_test = np.array(X_test, dtype='float32')
     y_test = np.array(y_test, dtype='uint8')
 
