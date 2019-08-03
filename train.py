@@ -1,6 +1,6 @@
 import numpy as np
 from skimage import io, color, exposure, transform
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 import os
 import glob
 import h5py
@@ -18,7 +18,6 @@ from keras import backend as K
 K.set_image_data_format('channels_first')
 
 from matplotlib import pyplot as plt
-%matplotlib inline
 
 NUM_CLASSES = 43
 IMG_SIZE = 48
@@ -54,6 +53,8 @@ try:
     train_data_file = os.path.join(data_dir,'GTSRB/X.h5')
     with  h5py.File(train_data_file) as hf:
         X, Y = hf['imgs'][:], hf['labels'][:]
+        X = np.array(X, dtype='float32')
+        Y = np.eye(NUM_CLASSES, dtype='uint8')[labels]
     print("Loaded images from X.h5")
 
 except (IOError,OSError, KeyError):
