@@ -215,13 +215,6 @@ def test_accuracy():
 
 
 if __name__ == '__main__':
-  #model_savename = '/home/tdteach/workspace/backdoor_bak/neural_cleance/models/gtsrb_bottom_right_white_4_target_33.h5'
-  #y_target = 33
-  #y_source = 4
-  #test_accuracy()
-  #exit(0)
-
-
   if len(sys.argv) == 3:
     y_target = int(sys.argv[1])
     y_source = int(sys.argv[2])
@@ -235,7 +228,7 @@ if __name__ == '__main__':
         continue
       cur_pt = str(y_source)+'_to_'+str(y_target)
       train_data_file = os.path.join(data_dir,'GTSRB/X_'+cur_pt+'.h5')
-      model_savename = '/home/tdteach/workspace/backdoor_bak/neural_cleance/models/model_'+cur_pt+'.h5'
+      model_savename = '/home/tdteach/workspace/backdoor/neural_cleance/models/model_'+cur_pt+'.h5'
       train_model()
       test_accuracy()
 
