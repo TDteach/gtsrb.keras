@@ -8,7 +8,7 @@ import h5py
 
 
 NUM_CLASSES = 43
-IMG_SIZE = 48
+IMG_SIZE = 32
 
 def preprocess_img(img):
     # Histogram normalization in y
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     with h5py.File('X.h5','w') as hf:
         hf.create_dataset('imgs', data=X)
-        hf.create_dataset('labels', data=Y+1)
+        hf.create_dataset('labels', data=Y)
 
 
     test_csv_file = os.path.join(data_dir,'GTSRB/test/GT-final_test.csv')
